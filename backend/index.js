@@ -6,7 +6,7 @@ const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const mongoUrl = process.env.MONGOURL;
+const mongoUrl = `mongodb+srv://${process.env.MONGO_ID}:${process.env.MONGO_PASS}@cluster0.ukf0r.mongodb.net/?retryWrites=true&w=majority&appName=${process.env.MONGO_APPNAME}`;
 
 const corsOrigin = `http://localhost:5173/`;
 
