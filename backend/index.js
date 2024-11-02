@@ -1,8 +1,8 @@
-const express = require("express");
+import express, { json } from "express";
 require('dotenv').config();
-const mongoose = require('mongoose');
-const cookieParser = require('cookie-parser');
-const cors = require('cors');
+import { connect } from 'mongoose';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -10,7 +10,7 @@ const mongoUrl = `mongodb+srv://${process.env.MONGO_ID}:${process.env.MONGO_PASS
 
 const corsOrigin = `http://localhost:5173/`;
 
-mongoose.connect(mongoUrl).then(()=>console.log('Mongo Connected...')).catch(err=>console.log(err));
+connect(mongoUrl).then(()=>console.log('Mongo Connected...')).catch(err=>console.log(err));
 
 //Middlewares
 app.use(
@@ -28,7 +28,7 @@ app.use(
     })
 );
 app.use(cookieParser());
-app.use(express.json());
+app.use(json());
 
 app.listen(PORT,()=>{
     console.log(`Backend running on port: ${PORT}`);
